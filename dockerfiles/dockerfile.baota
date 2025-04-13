@@ -1,23 +1,23 @@
 FROM debian:12
-LABEL maintainer="eyunzhu <mail@eyunzhu.com>"
+LABEL maintainer="gclm <gclmit@163.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 COPY scripts/boot.sh /usr/local/bin/boot.sh
 COPY scripts/iptables-rules.sh /usr/local/bin/iptables-rules.sh
 
-RUN sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources && \
+RUN sed -i 's|deb.debian.org|mirrors.huaweicloud.com|g' /etc/apt/sources.list.d/debian.sources && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
     sudo \
-    # curl \
+    curl \
     wget \
     vim \
     iproute2 \
     iputils-ping \
     procps \
-    # htop \
-    # lsof \
+    htop \
+    lsof \
     # dnsutils \
     iptables \
     cron \
@@ -30,7 +30,7 @@ RUN sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debia
     libonig5 \
     libzip-dev \
     autoconf \
-    && wget -4 --no-check-certificate -O install.sh https://download.bt.cn/install/install_lts.sh \
+    && wget -4 --no-check-certificate -O install.sh https://baota.la/install/install_6.0.sh \
     # 取消宝塔安装检查
     && sed -i '/Ready_Check$/ s/^/#/' install.sh \
     # 取消宝塔防火墙设置

@@ -37,37 +37,37 @@ jobs:
     # 构建 baota:minimal
     - name: Build minimal image
       run: |
-        docker build -t eyunzhu/baota:minimal -t eyunzhu/baota:latest -t eyunzhu/baota:minimal-${{ env.TAG }} -f ./dockerfiles/dockerfile.baota . || exit 1
+        docker build -t gclmit/bt-panel:minimal -t gclmit/bt-panel:latest -t gclmit/bt-panel:minimal-${{ env.TAG }} -f ./dockerfiles/dockerfile.baota . || exit 1
 
     # 验证 baota:minimal 是否存在
     - name: Verify images exist
       run: |
-        if ! docker image inspect eyunzhu/baota:minimal > /dev/null 2>&1; then
-            echo "Error: eyunzhu/baota:minimal does not exist!"
+        if ! docker image inspect gclmit/bt-panel:minimal > /dev/null 2>&1; then
+            echo "Error: gclmit/bt-panel:minimal does not exist!"
             exit 1
         fi
     
     # 构建 baota:lnmp
     - name: Build lnmp image
       run: |
-        docker build -t eyunzhu/baota:lnmp -t  eyunzhu/baota:lnmp-${{ env.TAG }} -f ./dockerfiles/dockerfile.baota-lnmp . || exit 1
+        docker build -t gclmit/bt-panel:lnmp -t  gclmit/bt-panel:lnmp-${{ env.TAG }} -f ./dockerfiles/dockerfile.baota-lnmp . || exit 1
 
     # 验证 baota:lnmp 是否存在
     - name: Verify images exist
       run: |
-        if ! docker image inspect eyunzhu/baota:lnmp > /dev/null 2>&1; then
-            echo "Error: eyunzhu/baota:lnmp does not exist!"
+        if ! docker image inspect gclmit/bt-panel:lnmp > /dev/null 2>&1; then
+            echo "Error: gclmit/bt-panel:lnmp does not exist!"
             exit 1
         fi
   
            
     - name: Push minimal image to Docker Hub
       run: |
-        docker push eyunzhu/baota:minimal
-        docker push eyunzhu/baota:latest
-        docker push eyunzhu/baota:minimal-${{ env.TAG }}
+        docker push gclmit/bt-panel:minimal
+        docker push gclmit/bt-panel:latest
+        docker push gclmit/bt-panel:minimal-${{ env.TAG }}
 
     - name: Push LNMP image to Docker Hub
       run: |
-        docker push eyunzhu/baota:lnmp
-        docker push eyunzhu/baota:lnmp-${{ env.TAG }}    
+        docker push gclmit/bt-panel:lnmp
+        docker push gclmit/bt-panel:lnmp-${{ env.TAG }}    

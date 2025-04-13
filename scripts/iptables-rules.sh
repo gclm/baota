@@ -14,7 +14,7 @@
 # 手动修改后可运行当前脚本生效： /usr/local/bin/iptables-rules.sh
 # 已经加入Systemd服务会容器启动会自动运行
 
-ports=(22 80 443 8888)
+ports=(21 22 80 443 3306 5432 6379 8888)
 
 # 清空已有规则
 iptables -F INPUT

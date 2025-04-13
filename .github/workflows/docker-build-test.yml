@@ -34,15 +34,15 @@ jobs:
     # 构建 baota:minimal
     - name: Build minimal image
       run: |
-        docker build -t eyunzhu/baota:minimal -t eyunzhu/baota:minimal_test -f ./dockerfiles/dockerfile.baota . || exit 1
-        docker save eyunzhu/baota:minimal_test -o minimal_test.tar
+        docker build -t gclmit/bt-panel:minimal -t gclmit/bt-panel:minimal_test -f ./dockerfiles/dockerfile.baota . || exit 1
+        docker save gclmit/bt-panel:minimal_test -o minimal_test.tar
 
 
     # 验证 baota:minimal 是否存在
     - name: Verify images exist
       run: |
-        if ! docker image inspect eyunzhu/baota:minimal > /dev/null 2>&1; then
-            echo "Error: eyunzhu/baota:minimal does not exist!"
+        if ! docker image inspect gclmit/bt-panel:minimal > /dev/null 2>&1; then
+            echo "Error: gclmit/bt-panel:minimal does not exist!"
             exit 1
         fi
 
@@ -57,16 +57,16 @@ jobs:
     - name: Build lnmp image
       if: ${{ github.event.inputs.push_type == 'both' }}
       run: |
-        docker build -t eyunzhu/baota:lnmp_test -f ./dockerfiles/dockerfile.baota-lnmp . || exit 1
-        docker save eyunzhu/baota:lnmp_test -o lnmp_test.tar
+        docker build -t gclmit/bt-panel:lnmp_test -f ./dockerfiles/dockerfile.baota-lnmp . || exit 1
+        docker save gclmit/bt-panel:lnmp_test -o lnmp_test.tar
 
 
     # 验证 baota:lnmp_test 是否存在
     - name: Verify images exist
       if: ${{ github.event.inputs.push_type == 'both' }}
       run: |
-        if ! docker image inspect eyunzhu/baota:lnmp_test > /dev/null 2>&1; then
-            echo "Error: eyunzhu/baota:lnmp_test does not exist!"
+        if ! docker image inspect gclmit/bt-panel:lnmp_test > /dev/null 2>&1; then
+            echo "Error: gclmit/bt-panel:lnmp_test does not exist!"
             exit 1
         fi
     
@@ -99,7 +99,7 @@ jobs:
     - name: Push minimal image to Docker Hub
       run: |
         docker load -i minimal_test.tar
-        docker push eyunzhu/baota:minimal_test
+        docker push gclmit/bt-panel:minimal_test
 
   push_lnmp:
     runs-on: ubuntu-latest
@@ -123,5 +123,5 @@ jobs:
     - name: Push LNMP image to Docker Hub
       run: |
         docker load -i lnmp_test.tar
-        docker push eyunzhu/baota:lnmp_test
+        docker push gclmit/bt-panel:lnmp_test
         

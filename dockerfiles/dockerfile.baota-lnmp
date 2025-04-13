@@ -1,5 +1,5 @@
-FROM eyunzhu/baota:minimal
-LABEL maintainer="eyunzhu <mail@eyunzhu.com>"
+FROM gclmit/bt-panel:minimal
+LABEL maintainer="gclm <gclmit@163.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
